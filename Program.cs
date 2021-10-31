@@ -17,7 +17,8 @@ namespace PerformanceTesting
                 typeof(LocalFunctionBenchmark),
                 typeof(EqualityComparerBenchmark),
                 typeof(EquatableForStruct),
-                typeof(LinqVsPureBenchmark)
+                typeof(LinqVsPureBenchmark),
+                typeof(ModuloBenchmark)
             });
             switcher.Run(args);
         }

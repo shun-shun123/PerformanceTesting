@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using BenchmarkDotNet.Attributes;
 
 namespace Benchmark
@@ -27,6 +28,29 @@ namespace Benchmark
             }
             
             Increment();
+        }
+
+        [Benchmark]
+        public void LambdaToAction()
+        {
+            CallAction(() => { Count++; });
+        }
+
+        [Benchmark]
+        public void LocalFunctionToAction()
+        {
+            void Increment()
+            {
+                Count++;
+            }
+            
+            CallAction(Increment);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private void CallAction(Action action)
+        {
+            action();
         }
     }
 }
